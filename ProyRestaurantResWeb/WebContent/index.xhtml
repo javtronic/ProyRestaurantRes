@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<style type="text/css">
+    .box,
+    .sample-layout > div {
+        background-color: #cce4f7;
+        text-align: center;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        border-radius: 4px;
+    }
+ 
+    .box-stretched {
+        height: 100%;
+    }
+ 
+    .sample-layout {
+        margin: 0;
+    }
+ 
+    .sample-layout > div {
+        border: 1px solid #ffffff;
+    }
+ 
+    .vertical-container {
+        margin: 0;
+        height: 200px;
+        background: #efefef;
+        border-radius: 4px;
+    }
+ 
+    .nested-grid .p-col-4 {
+        padding-bottom: 1em;
+    }
+    ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell {
+        text-align: center;
+    }
+	</style>
+</h:head> 
+<body> 
+<h:form>
+	<p:panel header="MENU ADMINISTRADOR" >
+		<p:panelGrid columns="2">	
+			<p:menu>
+		<p:submenu label="PLATOS">
+			<p:menuitem><h:link outcome="/platos.xhtml">
+        <h:graphicImage value="/resource/images/plato.jpg" height="200px" />
+    </h:link></p:menuitem>
+		</p:submenu>
+	</p:menu>
+			<p:menu>
+		<p:submenu label="MESAS">
+			<p:menuitem><h:link outcome="/mesas.xhtml">
+        <h:graphicImage value="/resource/images/mesa.jpg" height="200px" />
+    </h:link></p:menuitem>
+		</p:submenu>
+	</p:menu>
+			<p:menu>
+		<p:submenu label="CLIENTES">
+			<p:menuitem><h:link outcome="/clientes.xhtml">
+        <h:graphicImage value="/resource/images/cliente.jpg" height="200px" />
+    </h:link></p:menuitem>
+		</p:submenu>
+	</p:menu>
+			<p:menu>
+		<p:submenu label="EMPLEADOS">
+			<p:menuitem><h:link outcome="/empleados.xhtml">
+        <h:graphicImage value="/resource/images/empleado.jpg" height="200px" />
+    </h:link></p:menuitem>
+		</p:submenu>
+	</p:menu>
+		</p:panelGrid>
+	</p:panel>
+</h:form>
+</body> 
+</html>

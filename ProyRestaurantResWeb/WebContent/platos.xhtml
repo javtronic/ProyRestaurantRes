@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+	<p:panel header="ADMINISTRACION DE PLATILLOS">
+	<h:form>
+		<p:panelGrid columns="2">
+			<h:outputText value="Nombre Plato" />
+			<p:inputText value="" required="true"
+						requiredMessage="Ingrese nombre de Plato" />
+			<h:outputText value="Detalle" />
+			<p:inputText value="" required="true"
+						requiredMessage="Detalle de Plato" />
+			<h:outputText value="Precio" />
+			<p:spinner value="" required="true"
+						requiredMessage="Ingrese el Precio" />
+			<h:outputText value="Nombre Plato" />
+			<p:selectOneMenu value="">
+			<f:selectItem itemLabel="PLATO"
+							itemValue="PLATO"/>
+			<f:selectItem itemLabel="BEBIDA"
+							itemValue="BEBIDA"/>
+			<f:selectItem itemLabel="POSTRE"
+							itemValue="POSTRE"/>
+			<f:selectItem itemLabel="PORCION"
+							itemValue="PORCION"/>
+		</p:selectOneMenu>
+		<p:commandButton value="Agregar" >
+					</p:commandButton>
+		</p:panelGrid>
+	</h:form>
+	 </p:panel>
+</body> 
+</html>
