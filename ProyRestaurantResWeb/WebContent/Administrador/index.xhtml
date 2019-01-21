@@ -46,7 +46,7 @@
 <body> 
 <h:form>
 	<p:panel header="MENU ADMINISTRADOR" >
-		<p:panelGrid columns="2">	
+		<p:panelGrid columns="3">	
 			<p:menu>
 		<p:submenu label="PLATOS">
 			<p:menuitem><h:link outcome="/platos.xhtml">
@@ -56,6 +56,13 @@
 	</p:menu>
 			<p:menu>
 		<p:submenu label="MESAS">
+			<p:menuitem><h:link outcome="/mesas.xhtml">
+        <h:graphicImage value="/resource/images/mesa.jpg" height="200px" />
+    </h:link></p:menuitem>
+		</p:submenu>
+	</p:menu>
+	<p:menu>
+		<p:submenu label="ROLES">
 			<p:menuitem><h:link outcome="/mesas.xhtml">
         <h:graphicImage value="/resource/images/mesa.jpg" height="200px" />
     </h:link></p:menuitem>
