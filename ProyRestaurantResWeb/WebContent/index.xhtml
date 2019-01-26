@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+		<title>Reservas Restaurante</title>
+	</f:facet>
+</h:head>
+<body>
+	<h:outputStylesheet name="css/messages.css" />
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+	<div id="menu"></div>
+	<div id="main" align="center">
+		<div class="isa_info">
+			<p:commandButton icon="ui-icon-info" /> Demo de Ingreso a la Aplicacion <b>Ingresar</b>.
+		</div>
+		<p:panel header="Login" style="width:70%">
+			<p:messages>
+				<p:autoUpdate />
+			</p:messages>
+			<h:form>
+				<p:panelGrid columns="3" layout="grid">
+					<p:commandButton icon="ui-icon-key" value="Administrador"
+						action="Administrador/index" update="@form"></p:commandButton>
+					<p:commandButton icon="ui-icon-person" value="Clientes"
+						 update="@form"></p:commandButton>
+					<p:commandButton icon="ui-icon-suitcase" value="Empleados"
+						 update="@form"></p:commandButton>
+				</p:panelGrid>
+			</h:form>
+		</p:panel>
+	</div>
+</body>
+</html>

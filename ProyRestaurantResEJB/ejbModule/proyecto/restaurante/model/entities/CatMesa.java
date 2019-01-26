@@ -16,7 +16,7 @@ public class CatMesa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="CAT_MESA_IDMESA_GENERATOR", sequenceName="SEQ_CAT_MESA", allocationSize=1)
+	@SequenceGenerator(name="CAT_MESA_IDMESA_GENERATOR", sequenceName="SEQ_CAT_MESA", allocationSize=1 )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CAT_MESA_IDMESA_GENERATOR")
 	@Column(name="id_mesa", unique=true, nullable=false)
 	private Integer idMesa;

@@ -9,7 +9,7 @@
 	<f:facet name="first">
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
-			<title>Catalogo de Mesas</title>
+			<title>Roles Usuario</title>
 	</f:facet>
 </h:head> 
 <body> 
@@ -30,46 +30,39 @@
 	<p:messages>
 		<p:autoUpdate></p:autoUpdate>
 	</p:messages>
-	<p:panel header="CATALOGO DE MESAS">
+	<p:panel header="CATALOGO DE ROLES">
 	<h:form id="form1">
 		<p:panel>
 			<p:panelGrid columns="2">
-				<h:outputLabel value="Numero de Mesa:" />
-				<p:inputText value="#{beanAdministrador.catMesa.numMesa}"
-					maxlength="50" required="true" requiredMessage="Debe Ingresar El Numero de Mesa:">
-				<p:keyFilter regEx="/[\d\-]/"/> </p:inputText>
-				<h:outputLabel value="Capacidad de Mesa:" />
-				<p:inputText value="#{beanAdministrador.catMesa.numSillas}"
-					maxlength="50" required="true" requiredMessage="Debe Ingresar El Numero de Sillas:">
-				<p:keyFilter regEx="/[\d\-]/"/> </p:inputText>
+				<h:outputLabel value="Descripción:" />
+				<p:inputText value="#{beanAdministrador.catRol.descripcion}"
+					maxlength="50" required="true" requiredMessage="Debe Ingresar Descripción:">
+				<p:keyFilter regEx="/[a-z_]/i"/> </p:inputText>
 				<p:commandButton value="Insertar" icon="ui-icon-disk"
-					actionListener="#{beanAdministrador.actionListenerGuardarMesa()}"
+					actionListener="#{beanAdministrador.actionListenerGuardarRol()}"
 					update="@form,:form2" />
 			</p:panelGrid>
 			</p:panel>
 	</h:form>
 	</p:panel>
 	<h:form id="form2">
-		<p:dataTable value="#{beanAdministrador.listaMesa}" var="m"
+		<p:dataTable value="#{beanAdministrador.listaRol}" var="r"
 			emptyMessage="No se encontraron registros" paginator="true" rows="5">
 			<p:column headerText="ID" priority="1" style="width:50px">
-				<h:outputText value="#{m.idMesa}" />
+				<h:outputText value="#{r.idRol}" />
 			</p:column>
-			<p:column headerText="NUMERO DE MESA" priority="1">
-				<h:outputText value="#{m.numMesa}" />
-			</p:column>
-			<p:column headerText="CAPACIDAD" priority="1">
-				<h:outputText value="#{m.numSillas}" />
+			<p:column headerText="DESCRIPCION" priority="1">
+				<h:outputText value="#{r.descripcion}" />
 			</p:column>
 			<p:column headerText="OPCIONES">
 				<p:commandButton update="@form"
-					actionListener="#{beanAdministrador.actionListenerEliminarMesa(m)}"
+					actionListener="#{beanAdministrador.actionListenerEliminarRol(r)}"
 					title="Eliminar" icon="ui-icon-close">
 					<p:confirm header="Confirmación" message="Desea borrar?"
 						icon="ui-icon-close" />
 				</p:commandButton>
 				<p:commandButton
-					actionListener="#{beanAdministrador.actionListenerSeleccionarMesa(m)}"
+					actionListener="#{beanAdministrador.actionListenerSeleccionarRol(r)}"
 					oncomplete="PF('dialogo1').show()" update=":form3" title="Editar"
 					icon="ui-icon-pencil">
 				</p:commandButton>
@@ -78,24 +71,19 @@
 	</h:form>
 	<p:dialog widgetVar="dialogo1" modal="true">
 		<h:form id="form3">
-			<p:panel header="Datos Mesa">
+			<p:panel header="ROL DE USUARIO">
 				<p:panelGrid columns="1" layout="grid">
-					<h:outputLabel value="Numero de Mesa:" />
-					<p:inputText value="#{beanAdministrador.catMesa.numMesa}"
-					maxlength="50" required="true" requiredMessage="Debe Ingresar El Numero de Mesa:">
-					<p:keyFilter regEx="/[\d\-]/"/> </p:inputText>
-					<h:outputLabel value="Capacidad de Mesa:" />
-					<p:inputText value="#{beanAdministrador.catMesa.numSillas}"
-					maxlength="50" required="true" requiredMessage="Debe Ingresar El Numero de Sillas:">
-					<p:keyFilter regEx="/[\d\-]/"/> </p:inputText>
+					<h:outputLabel value="Descripción:" />
+					<p:inputText value="#{beanAdministrador.catRol.descripcion}"
+					maxlength="50" required="true" requiredMessage="Debe Ingresar Descripción:">
+					<p:keyFilter regEx="/[a-z_]/i"/> </p:inputText>
 					<p:commandButton oncomplete="PF('dialogo1').hide()"
-						actionListener="#{beanAdministrador.actionListenerActualizarMesa()}"
+						actionListener="#{beanAdministrador.actionListenerActualizarRol()}"
 						value="Actualizar" icon="ui-icon-disk" update="@form,:form2" />
 				</p:panelGrid>
 			</p:panel>
 		</h:form>
 	</p:dialog>
-	
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 		<p:commandButton value="Sí" type="button"
 			styleClass="ui-confirmdialog-yes" icon="fa fa-check" />

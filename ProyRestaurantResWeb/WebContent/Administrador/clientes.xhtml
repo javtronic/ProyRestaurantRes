@@ -5,8 +5,16 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"> 
 
-<h:head></h:head> 
+<h:head>
+	<f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+	</f:facet>
+</h:head> 
 <body> 
+<p:growl>
+		<p:autoUpdate />
+	</p:growl>
 	<p:panel header="Listado de Clientes">
 	<h:form>
 	

@@ -1,89 +1,71 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<style type="text/css">
-    .box,
-    .sample-layout > div {
-        background-color: #cce4f7;
-        text-align: center;
-        padding-top: 1em;
-        padding-bottom: 1em;
-        border-radius: 4px;
-    }
- 
-    .box-stretched {
-        height: 100%;
-    }
- 
-    .sample-layout {
-        margin: 0;
-    }
- 
-    .sample-layout > div {
-        border: 1px solid #ffffff;
-    }
- 
-    .vertical-container {
-        margin: 0;
-        height: 200px;
-        background: #efefef;
-        border-radius: 4px;
-    }
- 
-    .nested-grid .p-col-4 {
-        padding-bottom: 1em;
-    }
-    ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell {
-        text-align: center;
-    }
-	</style>
-</h:head> 
-<body> 
-<h:form>
-	<p:panel header="MENU ADMINISTRADOR" >
-		<p:panelGrid columns="3">	
-			<p:menu>
-		<p:submenu label="PLATOS">
-			<p:menuitem><h:link outcome="/platos.xhtml">
-        <h:graphicImage value="/resource/images/plato.jpg" height="200px" />
-    </h:link></p:menuitem>
-		</p:submenu>
-	</p:menu>
-			<p:menu>
-		<p:submenu label="MESAS">
-			<p:menuitem><h:link outcome="/mesas.xhtml">
-        <h:graphicImage value="/resource/images/mesa.jpg" height="200px" />
-    </h:link></p:menuitem>
-		</p:submenu>
-	</p:menu>
-	<p:menu>
-		<p:submenu label="ROLES">
-			<p:menuitem><h:link outcome="/mesas.xhtml">
-        <h:graphicImage value="/resource/images/mesa.jpg" height="200px" />
-    </h:link></p:menuitem>
-		</p:submenu>
-	</p:menu>
-			<p:menu>
-		<p:submenu label="CLIENTES">
-			<p:menuitem><h:link outcome="/clientes.xhtml">
-        <h:graphicImage value="/resource/images/cliente.jpg" height="200px" />
-    </h:link></p:menuitem>
-		</p:submenu>
-	</p:menu>
-			<p:menu>
-		<p:submenu label="EMPLEADOS">
-			<p:menuitem><h:link outcome="/empleados.xhtml">
-        <h:graphicImage value="/resource/images/empleado.jpg" height="200px" />
-    </h:link></p:menuitem>
-		</p:submenu>
-	</p:menu>
-		</p:panelGrid>
-	</p:panel>
-</h:form>
-</body> 
+	<f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+		<title>Reservas Restaurante</title>
+	</f:facet>
+</h:head>
+<body>
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+	<div id="menu">
+		<h:form>
+			<p:menubar>
+				<p:menuitem value="Inicio" title="Inicio" icon="ui-icon-home" action="index"></p:menuitem>
+				<f:facet name="options">
+					<p:commandButton title="Cerrar sesión" icon="ui-icon-power" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+	</div>
+	<div id="main">
+		<p:messages>
+			<p:autoUpdate />
+		</p:messages>
+		<h:form>
+			<p:panelGrid columns="3" layout="grid">
+				<p:panelGrid columns="1" style="text-align:center">
+					<p:commandLink action="platos">
+						<p:graphicImage library="images" name="plato.jpg" width="26%" />
+					</p:commandLink>
+					<h:outputText value="Platos" />
+				</p:panelGrid>
+				<p:panelGrid columns="1" style="text-align:center">
+					<p:commandLink action="empleado">
+						<p:graphicImage library="images" name="empleado.jpg" width="27%" />
+					</p:commandLink>
+					<h:outputText value="Empleado" />
+				</p:panelGrid>
+				<p:panelGrid columns="1" style="text-align:center">
+					<p:commandLink action="cliente">
+						<p:graphicImage library="images" name="cliente.jpg" width="25%" />
+					</p:commandLink>
+					<h:outputText value="Clientes" />
+				</p:panelGrid>
+				<p:panelGrid columns="1" style="text-align:center">
+					<p:commandLink action="roles">
+						<p:graphicImage library="images" name="rol_usuario.jpg"
+							width="55%" />
+					</p:commandLink>
+					<h:outputText value="Roles de usuario" />
+				</p:panelGrid>
+				<p:panelGrid columns="1" style="text-align:center">
+					<p:commandLink action="mesas">
+						<p:graphicImage library="images" name="mesa.jpg" width="50%"/>
+					</p:commandLink>
+					<h:outputText value="Mesas" />
+				</p:panelGrid>
+				
+			</p:panelGrid>
+		</h:form>
+	</div>
+</body>
 </html>
