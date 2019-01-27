@@ -123,57 +123,65 @@ public class ManagerAdministrador {
     	em.merge(platoActual);
     	return platoActual;
     }
-    
-    
-    
-    
-    
-    
-    
+         
     //MANEJO EMPLEADOS
-    public CatUsuario findUsEmpleadoById(int idUs) {
-    	CatUsuario usEmpleado = (CatUsuario)em.find(CatUsuario.class, idUs);
-    	return usEmpleado;
+    public List<CatUsuario> findAllUsEmpleado(){
+    	List<CatUsuario> listaEmpleados = em.createQuery("select o from CatUsuario o WHERE o.catRol.descripcion = 'Empleado' "
+    			+ "ORDER BY o.apellidoUs").getResultList();
+    	return listaEmpleados;
     }
     
-    public CatUsuario insertUsEmpleado(String apellidoUs, String ciudadUs, String direccionUs, String emailUs, Date fechanacUs, String generoUs,
-    		String nombreUs, String password, String telefonoUs, String username, int idRol) {
+    public CatUsuario insertUsEmpleado(CatUsuario empleadoNuevo, int idRol) {
     	CatUsuario usEmpleado = new CatUsuario();
-    	usEmpleado.setCatRol(findRolById(idRol));
-    	usEmpleado.setUsername(username);
-    	usEmpleado.setPassword(password);
-    	usEmpleado.setNombreUs(nombreUs);
-    	usEmpleado.setApellidoUs(apellidoUs);
-    	usEmpleado.setFechanacUs(fechanacUs);
-    	usEmpleado.setCiudadUs(ciudadUs);
-    	usEmpleado.setTelefonoUs(telefonoUs);
-    	usEmpleado.setGeneroUs(generoUs);
-    	usEmpleado.setDireccionUs(direccionUs);
-    	usEmpleado.setEmailUs(emailUs);
+    	usEmpleado.setUsername(empleadoNuevo.getUsername());
+    	usEmpleado.setPassword(empleadoNuevo.getPassword());
+    	usEmpleado.setNombreUs(empleadoNuevo.getNombreUs());
+    	usEmpleado.setApellidoUs(empleadoNuevo.getApellidoUs());
+    	usEmpleado.setFechanacUs(empleadoNuevo.getFechanacUs());
+    	usEmpleado.setCiudadUs(empleadoNuevo.getCiudadUs());
+    	usEmpleado.setTelefonoUs(empleadoNuevo.getTelefonoUs());
+    	usEmpleado.setGeneroUs(empleadoNuevo.getGeneroUs());
+    	usEmpleado.setDireccionUs(empleadoNuevo.getDireccionUs());
+    	usEmpleado.setEmailUs(empleadoNuevo.getEmailUs());
+    	//dad object
+    	CatRol rol = (CatRol)em.find(CatRol.class, idRol);
+    	usEmpleado.setCatRol(rol);
     	em.persist(usEmpleado);
     	return usEmpleado;
     }
-    
-    //public CatUsuario actualizarUsEmpleado() {}
     
     public void eliminarUsEmpleado(int idUs) {
     	CatUsuario usEmpleado=(CatUsuario)em.find(CatUsuario.class, idUs);
     	em.remove(usEmpleado);
     }
     
-    public List<CatUsuario> findAllUsEmpleado(){
-    	List<CatUsuario> listaEmpleados = em.createQuery("select o from CatUsuario o ORDER BY o.apellidoUs").getResultList();
-    	return listaEmpleados;
+    public CatUsuario findUsEmpleadoById(int idUs) {
+    	CatUsuario usEmpleado = (CatUsuario)em.find(CatUsuario.class, idUs);
+    	return usEmpleado;
     }
-    
-    
-    
-    
-    
-    
+      
+    public CatUsuario actualizarUsEmpleado(CatUsuario empleado, int idRol) {
+    	CatUsuario empleadoActual = findUsEmpleadoById(empleado.getIdUs());
+    	empleadoActual.setUsername(empleado.getUsername());
+    	empleadoActual.setPassword(empleado.getPassword());
+    	empleadoActual.setNombreUs(empleado.getNombreUs());
+    	empleadoActual.setApellidoUs(empleado.getApellidoUs());
+    	empleadoActual.setFechanacUs(empleado.getFechanacUs());
+    	empleadoActual.setCiudadUs(empleado.getCiudadUs());
+    	empleadoActual.setTelefonoUs(empleado.getTelefonoUs());
+    	empleadoActual.setGeneroUs(empleado.getGeneroUs());
+    	empleadoActual.setDireccionUs(empleado.getDireccionUs());
+    	empleadoActual.setEmailUs(empleado.getEmailUs());
+    	//dad object
+    	CatRol rol = (CatRol)em.find(CatRol.class, idRol);
+    	empleadoActual.setCatRol(rol);
+    	em.merge(empleadoActual);
+    	return empleadoActual;
+    }
+        
     //MANEJO CLIENTES
     public List<CatUsuario> findAllUsClientes(){
-    	List<CatUsuario> listaCliente = em.createQuery("select o from CatUsuario o ORDER BY o.apellidoUs").getResultList();
+    	List<CatUsuario> listaCliente = em.createQuery("select o from CatUsuario o WHERE o.catRol.descripcion = 'Cliente'").getResultList();
     	return listaCliente;
     }
 }

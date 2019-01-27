@@ -9,16 +9,189 @@
 	<f:facet name="first">
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+			<title>Manejo de Empleados</title>
 	</f:facet>
 </h:head> 
 <body> 
-<p:growl>
+	<p:growl>
 		<p:autoUpdate />
 	</p:growl>
-	<p:panel header="Administracion de Empleados">
-	<h:form>
-	
+	<div id="menu">
+		<h:form>
+			<p:menubar>
+				<p:menuitem value="Inicio" title="Inicio" icon="ui-icon-home"
+					action="index"></p:menuitem>
+				<f:facet name="options">
+					<p:commandButton title="Cerrar sesión" icon="ui-icon-power" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+	</div>
+	<p:messages>
+		<p:autoUpdate></p:autoUpdate>
+	</p:messages>
+	<p:panel header="ADMINISTRACION DE EMPLEADOS" collapsed="true" toggleable="true"> 
+	<h:form id="form1">
+		<p:panelGrid columns="2">
+		<p:panel header="Datos de Inicio de Sesion">
+			<p:panelGrid columns="2">
+				<h:outputLabel value="Username" />
+				<p:inputText value="#{beanAdministrador.catUsuario.username}"
+					maxlength="50" required="true" requiredMessage="Debe Ingresar un Username">
+				<p:keyFilter regEx="/[a-z0-9_]/i"/> </p:inputText>
+				<h:outputLabel value="Password" />
+				<p:password value="#{beanAdministrador.catUsuario.password}" 
+				feedback="true" inline="true"/>
+			</p:panelGrid>
+		</p:panel>	
+		<p:panel header="Datos Personales">
+			<p:panelGrid columns="2">
+				<h:outputLabel value="Nombre Empleado" />
+				<p:inputText value="#{beanAdministrador.catUsuario.nombreUs}"
+					maxlength="50" required="true" requiredMessage="Debe Ingresar El Nombre del Empleado">
+				<p:keyFilter regEx="/^[a-z\-_\s]+$/i"/> </p:inputText>
+				<h:outputLabel value="Apellido Empleado" />
+				<p:inputText value="#{beanAdministrador.catUsuario.apellidoUs}"
+					maxlength="50" required="true" requiredMessage="Debe Ingresar El Apellido del Empleado">
+				<p:keyFilter regEx="/^[a-z\-_\s]+$/i"/> </p:inputText>
+				<h:outputLabel value="Fecha de Nacimiento :" />
+				<p:calendar value="#{beanAdministrador.catUsuario.fechanacUs}" navigator="true" 
+				pattern="yyyy-MMM-dd" />
+				<h:outputLabel value="Ciudad de Residiencia:" />
+				<p:inputText value="#{beanAdministrador.catUsuario.ciudadUs}"
+					maxlength="50" required="true" requiredMessage="Ingresar la Ciudad">
+				<p:keyFilter regEx="/^[a-z\-_\s]+$/i"/> </p:inputText>
+				<h:outputLabel value="Telefono:" />
+				<p:inputText value="#{beanAdministrador.catUsuario.telefonoUs}"
+					maxlength="10" required="true" requiredMessage="Ingresar el telefono">
+				<p:keyFilter regEx="/[\d\-\.]/" /> </p:inputText>
+				<h:outputLabel value="Genero:" />
+				<p:selectOneMenu value="#{beanAdministrador.catUsuario.generoUs}">
+					<f:selectItem itemLabel="MASCULINO" itemValue="FEMENINO" />
+					<f:selectItem itemLabel="FEMENINO" itemValue="FEMENINO" />
+					<f:selectItem itemLabel="LGBTI" itemValue="LGBTI" />
+				</p:selectOneMenu>
+				<h:outputLabel value="Direccion Domiciliaria :" />
+				<p:inputText value="#{beanAdministrador.catUsuario.direccionUs}"
+					maxlength="50" requiredMessage="Ingrese la Direccion">
+				<p:keyFilter regEx="/^[a-z\d\-_\s]+$/i"/> </p:inputText>
+				<h:outputLabel value="Correo Electronico :" />
+				<p:inputText value="#{beanAdministrador.catUsuario.emailUs}"
+					maxlength="50" requiredMessage="Ingrese el Correo Electronico">
+				<p:keyFilter regEx="/[a-z0-9_\.\-@]/i"/> </p:inputText>
+				<h:outputLabel value="Rol de Usuario" />
+				<p:selectOneMenu value="#{beanAdministrador.idRol}">
+					<f:selectItems value="#{beanAdministrador.listaRol}" var="r" 
+					itemLabel="#{r.descripcion}" itemValue="#{r.idRol}" />
+				</p:selectOneMenu>
+				<p:commandButton value="Insertar" icon="ui-icon-disk"
+					actionListener="#{beanAdministrador.actionListenerGuardarEmpleado()}"
+					update="@form,:form2" />
+			</p:panelGrid>
+			</p:panel>
+			</p:panelGrid>
 	</h:form>
 	</p:panel>
+	<h:form id="form2">
+		<p:dataTable value="#{beanAdministrador.listaEmpleados}" var="e"
+			emptyMessage="No se encontraron registros" paginator="true" rows="5">
+			<p:column headerText="ID" priority="1" style="width:50px">
+				<h:outputText value="#{e.idUs}" />
+			</p:column>
+			<p:column headerText="USERNAME" priority="2">
+				<h:outputText value="#{e.username}" />
+			</p:column>
+			<p:column headerText="NOMBRE" priority="1">
+				<h:outputText value="#{e.nombreUs}" />
+			</p:column>
+			<p:column headerText="APELLIDO" priority="1">
+				<h:outputText value="#{e.apellidoUs}" />
+			</p:column>
+			<p:column headerText="FECHA NAC." priority="2">
+				<h:outputText value="#{e.fechanacUs}" />
+			</p:column>
+			<p:column headerText="CIUDAD" priority="2">
+				<h:outputText value="#{e.ciudadUs}" />
+			</p:column>
+			<p:column headerText="TELEFONO" priority="2">
+				<h:outputText value="#{e.telefonoUs}" />
+			</p:column>
+			<p:column headerText="GENERO" priority="2">
+				<h:outputText value="#{e.generoUs}" />
+			</p:column>
+			<p:column headerText="DIRECCION" priority="2">
+				<h:outputText value="#{e.direccionUs}" />
+			</p:column>
+			<p:column headerText="EMAIL" priority="2">
+				<h:outputText value="#{e.emailUs}" />
+			</p:column>
+			<p:column headerText="OPCIONES">
+				<p:commandButton update="@form"
+					actionListener="#{beanAdministrador.actionListenerEliminarEmpleado(e)}"
+					title="Eliminar" icon="ui-icon-close">
+					<p:confirm header="Confirmación" message="Desea borrar?"
+						icon="ui-icon-close" />
+				</p:commandButton>
+				<p:commandButton
+					actionListener="#{beanAdministrador.actionListenerSeleccionarEmpleado(e)}"
+					oncomplete="PF('dialogo1').show()" update=":form3" title="Editar"
+					icon="ui-icon-pencil">
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<p:dialog widgetVar="dialogo1" modal="true">
+		<h:form id="form3">
+			<p:panel header="Datos Empleado">
+				<p:panelGrid columns="2" layout="grid">
+					<h:outputLabel value="Nombre Empleado" />
+				<p:inputText value="#{beanAdministrador.catUsuario.nombreUs}"
+					maxlength="50" required="true" requiredMessage="Debe Ingresar El Nombre del Empleado">
+				<p:keyFilter regEx="/^[a-z\-_\s]+$/i"/> </p:inputText>
+				<h:outputLabel value="Apellido Empleado" />
+				<p:inputText value="#{beanAdministrador.catUsuario.apellidoUs}"
+					maxlength="50" required="true" requiredMessage="Debe Ingresar El Apellido del Empleado">
+				<p:keyFilter regEx="/^[a-z\-_\s]+$/i"/> </p:inputText>
+				<h:outputLabel value="Fecha de Nacimiento :" />
+				<p:calendar value="#{beanAdministrador.catUsuario.fechanacUs}" navigator="true" 
+				pattern="yyyy-MMM-dd" />
+				<h:outputLabel value="Ciudad de Residiencia:" />
+				<p:inputText value="#{beanAdministrador.catUsuario.ciudadUs}"
+					maxlength="50" required="true" requiredMessage="Ingresar la Ciudad">
+				<p:keyFilter regEx="/^[a-z\-_\s]+$/i"/> </p:inputText>
+				<h:outputLabel value="Telefono:" />
+				<p:inputText value="#{beanAdministrador.catUsuario.telefonoUs}"
+					maxlength="10" required="true" requiredMessage="Ingresar el telefono">
+				<p:keyFilter regEx="/[\d\-\.]/" /> </p:inputText>
+				<h:outputLabel value="Genero:" />
+				<p:selectOneMenu value="#{beanAdministrador.catUsuario.generoUs}">
+					<f:selectItem itemLabel="MASCULINO" itemValue="FEMENINO" />
+					<f:selectItem itemLabel="FEMENINO" itemValue="FEMENINO" />
+					<f:selectItem itemLabel="LGBTI" itemValue="LGBTI" />
+				</p:selectOneMenu>
+				<h:outputLabel value="Direccion Domiciliaria :" />
+				<p:inputText value="#{beanAdministrador.catUsuario.direccionUs}"
+					maxlength="50" requiredMessage="Ingrese la Direccion">
+				<p:keyFilter regEx="/^[a-z\d\-_\s]+$/i"/> </p:inputText>
+				<h:outputLabel value="Correo Electronico :" />
+				<p:inputText value="#{beanAdministrador.catUsuario.emailUs}"
+					maxlength="50" requiredMessage="Ingrese el Correo Electronico">
+				<p:keyFilter regEx="/[a-z0-9_\.\-@]/i"/> </p:inputText>
+					
+					<p:commandButton oncomplete="PF('dialogo1').hide()"
+						actionListener="#{beanAdministrador.actionListenerActualizarEmpleado()}"
+						value="Actualizar" icon="ui-icon-disk" update="@form,:form2" />
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</p:dialog>
+	
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		<p:commandButton value="Sí" type="button"
+			styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+		<p:commandButton value="No" type="button"
+			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+	</p:confirmDialog>
+	
 </body> 
 </html>

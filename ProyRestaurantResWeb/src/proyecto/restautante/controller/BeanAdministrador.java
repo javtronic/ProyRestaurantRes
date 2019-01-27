@@ -135,9 +135,31 @@ public class BeanAdministrador {
 	}
 	
 	/*Metodos Empleado*/
+	public void actionListenerGuardarEmpleado() {
+		ma.insertUsEmpleado(catUsuario, idRol);
+		catUsuario = new CatUsuario();
+		listaEmpleados = ma.findAllUsEmpleado();
+		JSFutil.crearMensajeInfo("Se ha guardado el Empleado");
+	}
 	
+	public void actionListenerEliminarEmpleado(CatUsuario empleadoEliminar) {
+		ma.eliminarUsEmpleado(empleadoEliminar.getIdUs());
+		listaEmpleados = ma.findAllUsEmpleado();
+		JSFutil.crearMensajeWarning("Se ha eliminado el Empleado");
+	}
 	
-	/*Metodos Clientes*/
+	public void actionListenerSeleccionarEmpleado(CatUsuario empleadoSeleccionado) {
+		catUsuario = empleadoSeleccionado;
+	}
+	
+	public void actionListenerActualizarEmpleado() {
+		ma.actualizarUsEmpleado(catUsuario, idRol);
+		listaEmpleados = ma.findAllUsEmpleado();
+		JSFutil.crearMensajeInfo("Se ha Actualizado el Empleado");
+		catUsuario = new CatUsuario();
+	}
+	
+	/*Metodos Clientes Solo se debe inicializar*/
 	
 	/*Getter and Setter*/
 

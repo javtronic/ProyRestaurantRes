@@ -9,16 +9,62 @@
 	<f:facet name="first">
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+			<title>Lista Clientes</title>
 	</f:facet>
 </h:head> 
 <body> 
-<p:growl>
+	<p:growl>
 		<p:autoUpdate />
 	</p:growl>
-	<p:panel header="Listado de Clientes">
-	<h:form>
-	
+	<div id="menu">
+		<h:form>
+			<p:menubar>
+				<p:menuitem value="Inicio" title="Inicio" icon="ui-icon-home"
+					action="index"></p:menuitem>
+				<f:facet name="options">
+					<p:commandButton title="Cerrar sesión" icon="ui-icon-power" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+	</div>
+	<p:messages>
+		<p:autoUpdate></p:autoUpdate>
+	</p:messages>
+	<p:panel header="LISTADO DE CLIENTES"> </p:panel>
+	<h:form id="form2">
+		<p:dataTable value="#{beanAdministrador.listaCliente}" var="e"
+			emptyMessage="No se encontraron registros" paginator="true" rows="5">
+			<p:column headerText="ID" priority="1" style="width:50px">
+				<h:outputText value="#{e.idUs}" />
+			</p:column>
+			<p:column headerText="USERNAME" priority="2">
+				<h:outputText value="#{e.username}" />
+			</p:column>
+			<p:column headerText="NOMBRE" priority="1">
+				<h:outputText value="#{e.nombreUs}" />
+			</p:column>
+			<p:column headerText="APELLIDO" priority="1">
+				<h:outputText value="#{e.apellidoUs}" />
+			</p:column>
+			<p:column headerText="FECHA NAC." priority="2">
+				<h:outputText value="#{e.fechanacUs}" />
+			</p:column>
+			<p:column headerText="CIUDAD" priority="2">
+				<h:outputText value="#{e.ciudadUs}" />
+			</p:column>
+			<p:column headerText="TELEFONO" priority="2">
+				<h:outputText value="#{e.telefonoUs}" />
+			</p:column>
+			<p:column headerText="GENERO" priority="2">
+				<h:outputText value="#{e.generoUs}" />
+			</p:column>
+			<p:column headerText="DIRECCION" priority="2">
+				<h:outputText value="#{e.direccionUs}" />
+			</p:column>
+			<p:column headerText="EMAIL" priority="2">
+				<h:outputText value="#{e.emailUs}" />
+			</p:column>
+		</p:dataTable>
 	</h:form>
-	</p:panel>
 </body> 
 </html>
